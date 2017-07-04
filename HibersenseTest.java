@@ -35,7 +35,6 @@ public class HibersenseTest {
 		driver.get("https://hibersense.com/access/login");
 	}
 
-
 	// Given that I am on the main page
 	// And I am not logged in
 	// When I try to login with an invalid username and invalid password
@@ -57,6 +56,35 @@ public class HibersenseTest {
 
 		// Check that when the login is invalid, remain on same URL
 		assertEquals("https://hibersense.com/access/login", driver.getCurrentUrl());
+
+	}
+
+	// Given that I am on the main page
+	// And I am not logged in
+	// When I try to login with an invalid username and invalid password
+	// Then I am given a message informing me
+	@Test
+	public void testEditLink() {
+
+		// ENTER YOUR OWN USERNAME/INVALID PASSWORD HERE!
+		WebElement var = driver.findElement(By.className("email"));
+		var.findElement(By.tagName("input")).sendKeys("student8@test.com");
+		WebElement var2 = driver.findElement(By.className("pass"));
+		var2.findElement(By.tagName("input")).sendKeys("student8");
+
+		// Look for the submit button (in the login div) and click
+		// to attempt to login
+
+		WebElement submitButton = driver.findElement(By.className("btn-login"));
+		submitButton.click();
+		// Look for the submit button (in the login div) and click
+		// to attempt to login
+
+		WebElement submitButton2 = driver.findElement(By.className("setting"));
+		submitButton2.click();
+
+		// Check that when the login is invalid, remain on same URL
+		assertEquals("https://hibersense.com/access/settings", driver.getCurrentUrl());
 
 	}
 }
