@@ -63,8 +63,6 @@ public class HibersenseTest {
 		//System.out.println(submitButton.getText());
 		submitButton.click();
 
-
-
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		// Check that when the login is invalid, remain on same URL
@@ -92,6 +90,7 @@ public class HibersenseTest {
 		submitButton.click();
 
 		System.out.println(driver.getPageSource());
+		System.out.println(driver.findElement(By.id("errorOverlay")).getCssValue("display"));
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -100,12 +99,10 @@ public class HibersenseTest {
 
 	}
 
-	// Given that I am on the main page
-	// And I am not logged in
-	// When I try to login with an invalid username and invalid password
-	// Then I am given a message informing me
+	// Given that I am logged in
+	// There is a link in a side bar to take me to the settings menu
 	@Test
-	public void testEditLink() {
+	public void testSettingLink() {
 
 		// ENTER YOUR OWN USERNAME/INVALID PASSWORD HERE!
 		WebElement var = driver.findElement(By.className("email"));
@@ -139,11 +136,16 @@ public class HibersenseTest {
 		if (mainMenu==null)
 			fail("Can\'t find main menu");
 
+		mainMenu.findElement(By.className("settings")).click()
+
 		// Check that when the login is invalid, remain on same URL
 		assertEquals("https://hibersense.com/access/settings", driver.getCurrentUrl());
 
 	}
 
+
+	// Given that a user is logged in
+	// There is a Tempurature slider to switch between Farenhiet and Celcius
 	@Test
 	public void testTempUnitButtonExists() {
 
