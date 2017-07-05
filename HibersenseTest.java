@@ -8,7 +8,7 @@ import org.openqa.selenium.logging.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.*;
-import java.util.*;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class HibersenseTest {
@@ -63,6 +63,8 @@ public class HibersenseTest {
 		//System.out.println(submitButton.getText());
 		submitButton.click();
 
+
+
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		// Check that when the login is invalid, remain on same URL
@@ -88,6 +90,8 @@ public class HibersenseTest {
 
 		WebElement submitButton = driver.findElement(By.className("btn-login"));
 		submitButton.click();
+
+		System.out.println(driver.getPageSource());
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -120,8 +124,6 @@ public class HibersenseTest {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		List<WebElement> sideMenus = driver.findElements(By.tagName("aside"));
-
-		//System.out.println(driver.getPageSource());
 
 		WebElement mainMenu = null;
 
@@ -164,8 +166,8 @@ public class HibersenseTest {
 		WebElement tempButton = driver.findElement(By.className("celsius"));
 		// Check that when the login is invalid, remain on same URL
 		
-		assertElementExists(mainMenu, By.partialLinkText("F"));
-		assertElementExists(mainMenu, By.partialLinkText("C"));		
+		assertElementExists(tempButton, By.partialLinkText("F"));
+		assertElementExists(tempButton, By.partialLinkText("C"));		
 	}
 
 	private void assertElementExists(SearchContext sc, By b){
